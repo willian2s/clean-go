@@ -52,6 +52,8 @@ To contribute to the development of this microservice, follow these steps:
 
 1. Install the required development dependencies:
 
+- [Install migrate CLI](https://github.com/golang-migrate/migrate/tree/master/cmd/migrate), and
+
 ```bash
   go install github.com/cosmtrek/air@latest
 ```
@@ -61,6 +63,18 @@ To contribute to the development of this microservice, follow these steps:
 ```bash
   air
 ```
+
+This will start the development server and automatically reload the microservice whenever changes are made to the source files.
+
+3. Make your changes and write tests for them.
+
+4. Apply database migrations using golang-migrate/migrate:
+
+```bash
+  migrate -source file://path/to/migrations -database "YOURDBCONNECTION_STRING" up
+```
+
+Replace `path/to/migrations` with the actual path to your migrations folder and `YOUR_DB_CONNECTION_STRING` with the actual connection string for your database. Adjust the command if you're using a different database engine or migration source.
 
 ## Testing
 
