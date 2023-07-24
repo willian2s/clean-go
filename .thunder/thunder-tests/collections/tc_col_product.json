@@ -1,0 +1,68 @@
+{
+    "_id": "fbf45930-f09e-4a98-824f-722e823de60f",
+    "colName": "Product",
+    "created": "2023-07-24T17:03:06.779Z",
+    "sortNum": 10000,
+    "folders": [],
+    "requests": [
+        {
+            "_id": "e94bd6ee-b929-4b85-8f99-d24a99119313",
+            "colId": "fbf45930-f09e-4a98-824f-722e823de60f",
+            "containerId": "",
+            "name": "Create Product",
+            "url": "{{baseUrl}}/product",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-07-24T17:03:21.927Z",
+            "modified": "2023-07-24T17:04:52.908Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Chair\",\n  \"price\": 25.00,\n  \"description\": \"This is a beach chair\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "b1244ca2-5b06-4a16-a221-c47448e3becb",
+            "colId": "fbf45930-f09e-4a98-824f-722e823de60f",
+            "containerId": "",
+            "name": "Fetch",
+            "url": "{{baseUrl}}/product?page=1&itemsPerPage=5&sort&descending&search",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-07-24T18:06:28.097Z",
+            "modified": "2023-07-24T18:15:32.552Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "itemsPerPage",
+                    "value": "5",
+                    "isPath": false
+                },
+                {
+                    "name": "sort",
+                    "value": "",
+                    "isPath": false
+                },
+                {
+                    "name": "descending",
+                    "value": "",
+                    "isPath": false
+                },
+                {
+                    "name": "search",
+                    "value": "",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        }
+    ]
+}

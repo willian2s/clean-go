@@ -10,12 +10,13 @@ import (
 	"github.com/jackc/pgconn"
 	"github.com/jackc/pgx/v4"
 	"github.com/jackc/pgx/v4/pgxpool"
-	"github.com/spf13/viper"
+	"github.com/willian2s/clean-go/config"
 
-	_ "github.com/golang-migrate/migrate/v4/database/pgx"
+	_ "github.com/golang-migrate/migrate/v4/database/pgx" //driver pgx used to run migrations
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 )
 
+// PoolInterface is an wraping to PgxPool to create test mocks
 type PoolInterface interface {
 	Close()
 	Exec(ctx context.Context, sql string, arguments ...interface{}) (pgconn.CommandTag, error)
@@ -39,9 +40,10 @@ type PoolInterface interface {
 // It takes a context.Context object as a parameter.
 // It returns a *pgxpool.Pool object.
 func GetConnection(context context.Context) *pgxpool.Pool {
-	databaseUrl := viper.GetString("database.url")
+	databaseURL := config.EnvConfigs.DatabaseUrl
 
-	conn, err := pgxpool.Connect(context, "postgres"+databaseUrl)
+	conn, err := pgxpool.Connect(context, "postgres"+databaseURL)
+
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
@@ -55,11 +57,8 @@ func GetConnection(context context.Context) *pgxpool.Pool {
 // It does not take any parameters.
 // It does not return anything.
 func RunMigrations() {
-	databaseUrl := viper.GetString("database.url")
-	m, err := migrate.New(
-		"file://database/migrations",
-		"pgx"+databaseUrl,
-	)
+	databaseURL := config.EnvConfigs.DatabaseUrl
+	m, err := migrate.New("file://database/migrations", "pgx"+databaseURL)
 	if err != nil {
 		log.Println(err)
 	}
