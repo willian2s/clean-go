@@ -6,6 +6,7 @@ require (
 	github.com/jackc/pgconn v1.14.1
 	github.com/jackc/pgx/v4 v4.18.1
 	github.com/stretchr/testify v1.8.3
+	go.uber.org/mock v0.2.0
 )
 
 require (

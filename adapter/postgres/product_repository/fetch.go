@@ -11,7 +11,7 @@ import (
 // Fetch fetches a paginated list of products from the database.
 //
 // It takes a PaginationRequestParams pointer as a parameter and returns a Pagination of Product slices and an error.
-func (repository repository) Fetch(pagination *dto.PaginationRequestParams) (*domain.Pagination[[]domain.Product], error) {
+func (repository repository) Fetch(pagination *dto.PaginationRequestParams) (*domain.Pagination, error) {
 	ctx := context.Background()
 	products := []domain.Product{}
 	total := int(0)
@@ -60,7 +60,7 @@ func (repository repository) Fetch(pagination *dto.PaginationRequestParams) (*do
 		}
 	}
 
-	return &domain.Pagination[[]domain.Product]{
+	return &domain.Pagination{
 		Items: products,
 		Total: total,
 	}, nil

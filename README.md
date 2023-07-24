@@ -12,6 +12,8 @@ This is a microservice project built using clean architecture principles.
   - [Usage](#usage)
   - [Development](#development)
   - [Testing](#testing)
+    - [Coverage](#coverage)
+    - [Mocking](#mocking)
   - [Contributing](#contributing)
   - [License](#license)
 
@@ -84,11 +86,27 @@ To run the tests, use the following command:
   go test ./...
 ```
 
+### Coverage
+
 To generate the coverage report, use the following command:
 
 ```bash
   chmod +x ./coverage.sh
   ./coverage.sh
+```
+
+### Mocking
+
+Install the mockgen tool:
+
+```bash
+  go install go.uber.org/mock/mockgen@latest
+```
+
+To create mocks, use the following command:
+
+```bash
+  mockgen -source ./path/to/source.go -destination ./path/to/destination.go -package=package
 ```
 
 ## Contributing
