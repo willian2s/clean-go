@@ -3,7 +3,6 @@ package productrepository
 import (
 	"context"
 
-	"github.com/google/uuid"
 	"github.com/willian2s/clean-go/core/domain"
 	"github.com/willian2s/clean-go/core/dto"
 )
@@ -17,8 +16,7 @@ func (repository repository) Create(productRequest *dto.CreateProductRequest) (*
 
 	err := repository.db.QueryRow(
 		ctx,
-		"INSERT INTO products (id, name, price, description) VALUES ($1, $2, $3, $4) RETURNING *",
-		uuid.New().String(),
+		"INSERT INTO products (name, price, description) VALUES ($1, $2, $3) RETURNING *",
 		productRequest.Name,
 		productRequest.Price,
 		productRequest.Description,

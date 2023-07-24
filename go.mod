@@ -35,13 +35,13 @@ require (
 require (
 	github.com/bxcodec/faker/v3 v3.8.1
 	github.com/golang-migrate/migrate/v4 v4.16.2
-	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgproto3/v2 v2.3.2 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
+	github.com/pashagolub/pgxmock v1.8.0
 	github.com/spf13/viper v1.16.0
 	golang.org/x/crypto v0.9.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
