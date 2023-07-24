@@ -84,6 +84,13 @@ To run the tests, use the following command:
   go test ./...
 ```
 
+To generate the coverage report, use the following command:
+
+```bash
+  chmod +x ./coverage.sh
+  ./coverage.sh
+```
+
 ## Contributing
 
 Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
