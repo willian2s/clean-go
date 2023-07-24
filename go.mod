@@ -33,6 +33,7 @@ require (
 )
 
 require (
+	github.com/bxcodec/faker/v3 v3.8.1
 	github.com/golang-migrate/migrate/v4 v4.16.2
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
