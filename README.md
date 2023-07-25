@@ -78,6 +78,20 @@ This will start the development server and automatically reload the microservice
 
 Replace `path/to/migrations` with the actual path to your migrations folder and `YOUR_DB_CONNECTION_STRING` with the actual connection string for your database. Adjust the command if you're using a different database engine or migration source.
 
+5. Generate documentation:
+
+- Install the [swaggo](https://github.com/swaggo/swag#getting-started)
+
+```bash
+  go install github.com/swaggo/swag/cmd/swag@latest
+```
+
+- Generate doc:
+
+```bash
+  swag init -d adapter/http --parseDependency --parseInternal --parseDepth 2 -o adapter/http/docs
+```
+
 ## Testing
 
 To run the tests, use the following command:
