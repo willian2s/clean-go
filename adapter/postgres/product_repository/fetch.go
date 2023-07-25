@@ -3,9 +3,9 @@ package productrepository
 import (
 	"context"
 
+	"github.com/booscaaa/go-paginate/paginate"
 	"github.com/willian2s/clean-go/core/domain"
 	"github.com/willian2s/clean-go/core/dto"
-	"github.com/willian2s/clean-go/pkg/paginate"
 )
 
 // Fetch fetches a paginated list of products from the database.
@@ -16,17 +16,13 @@ func (repository repository) Fetch(pagination *dto.PaginationRequestParams) (*do
 	products := []domain.Product{}
 	total := int(0)
 
-	query, queryCount, err := paginate.Paginate("SELECT * FROM products").
+	query, queryCount, _ := paginate.Paginate("SELECT * FROM products").
 		Page(pagination.Page).
 		Desc(pagination.Descending).
 		Sort(pagination.Sort).
 		RowsPerPage(pagination.ItemsPerPage).
 		SearchBy(pagination.Search, "name", "description").
 		Query()
-
-	if err != nil {
-		return nil, err
-	}
 
 	{
 		rows, err := repository.db.Query(

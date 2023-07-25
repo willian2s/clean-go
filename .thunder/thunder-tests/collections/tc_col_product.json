@@ -14,12 +14,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-07-24T17:03:21.927Z",
-            "modified": "2023-07-24T17:04:52.908Z",
+            "modified": "2023-07-25T11:48:50.356Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"Chair\",\n  \"price\": 25.00,\n  \"description\": \"This is a beach chair\"\n}",
+                "raw": "{\n  \"name\": \"Chair\",\n  \"price\": 25.95,\n  \"description\": \"This is a beach chair\"\n}",
                 "form": []
             },
             "tests": []
