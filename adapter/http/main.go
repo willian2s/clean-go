@@ -3,15 +3,15 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
-	"net/http"
 
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
+	"github.com/willian2s/clean-go/adapter/http/middleware"
 	"github.com/willian2s/clean-go/adapter/postgres"
 	"github.com/willian2s/clean-go/config"
 	"github.com/willian2s/clean-go/di"
 
-	httpSwagger "github.com/swaggo/http-swagger"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 	_ "github.com/willian2s/clean-go/adapter/http/docs"
 )
 
@@ -23,7 +23,7 @@ import (
 // @host localhost:3000
 // @BasePath /
 func main() {
-	config.InitEnvConfigs()
+	config.ConfigRuntime()
 
 	ctx := context.Background()
 	conn := postgres.GetConnection(ctx)
@@ -32,12 +32,27 @@ func main() {
 	postgres.RunMigrations()
 	productService := di.ConfigProductDI(conn)
 
-	router := mux.NewRouter()
-	router.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
-	router.Handle("/product", http.HandlerFunc(productService.Create)).Methods("POST")
-	router.Handle("/product", http.HandlerFunc(productService.Fetch)).Queries().Methods("GET")
+	mode := config.EnvConfigs.Mode
+	gin.SetMode(mode)
+
+	router := gin.Default()
+	router.SetTrustedProxies(nil)
+
+	router.Use(middleware.RateLimit, gin.Recovery())
+	router.Use(middleware.Cors)
+
+	product := router.Group("/product")
+	{
+		product.POST("/", func(c *gin.Context) {
+			productService.Create(c.Writer, c.Request)
+		})
+		product.GET("/", func(c *gin.Context) {
+			productService.Fetch(c.Writer, c.Request)
+		})
+	}
+
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	port := config.EnvConfigs.ServerPort
-	log.Printf("Listening on port %s", port)
-	http.ListenAndServe(fmt.Sprintf(":%v", port), router)
+	router.Run(fmt.Sprintf(":%s", port))
 }

@@ -29,11 +29,11 @@
             "colId": "fbf45930-f09e-4a98-824f-722e823de60f",
             "containerId": "",
             "name": "Fetch",
-            "url": "{{baseUrl}}/product?page=1&itemsPerPage=5&sort&descending&search",
+            "url": "{{baseUrl}}/product?page=1&itemsPerPage=10",
             "method": "GET",
             "sortNum": 20000,
             "created": "2023-07-24T18:06:28.097Z",
-            "modified": "2023-07-24T19:09:30.185Z",
+            "modified": "2023-07-25T16:40:24.555Z",
             "headers": [],
             "params": [
                 {
@@ -43,22 +43,25 @@
                 },
                 {
                     "name": "itemsPerPage",
-                    "value": "5",
+                    "value": "10",
                     "isPath": false
                 },
                 {
                     "name": "sort",
                     "value": "",
+                    "isDisabled": true,
                     "isPath": false
                 },
                 {
                     "name": "descending",
                     "value": "",
+                    "isDisabled": true,
                     "isPath": false
                 },
                 {
                     "name": "search",
                     "value": "",
+                    "isDisabled": true,
                     "isPath": false
                 }
             ],
