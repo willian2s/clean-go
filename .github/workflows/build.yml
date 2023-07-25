@@ -14,12 +14,16 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go-version }}
+
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Download swaggo
-        run: go install github.com/swaggo/swag/cmd/swag@latest
+        run: go install github.com/swaggo/swag/cmd/swag@v1.8.4
+
       - name: Install swaggo
         run: swag init -d adapter/http --parseDependency --parseInternal --parseDepth 2 -o adapter/http/docs
+
       - name: Test
         run: go mod tidy && go test ./... -coverprofile=coverage.txt -covermode=atomic
 
@@ -30,3 +34,6 @@ jobs:
           file: ./coverage.txt
           flags: unittests
           name: codecov-umbrella
+
+      - name: Run deploy Render
+        run: curl $${{ secrets.RENDER_DEPLOY_URL }} --request POST
