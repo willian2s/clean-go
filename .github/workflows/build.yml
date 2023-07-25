@@ -36,4 +36,4 @@ jobs:
           name: codecov-umbrella
 
       - name: Run deploy Render
-        run: curl $${{ secrets.RENDER_DEPLOY_URL }} --request POST
+        run: curl ${{ secrets.RENDER_DEPLOY_URL }} --request POST
