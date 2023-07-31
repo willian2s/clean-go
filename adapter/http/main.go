@@ -16,7 +16,7 @@ import (
 	"github.com/willian2s/clean-go/di"
 
 	httpSwagger "github.com/swaggo/http-swagger/v2"
-	_ "github.com/willian2s/clean-go/adapter/http/docs"
+	"github.com/willian2s/clean-go/adapter/http/docs"
 )
 
 // @title Clean GO API Docs
@@ -24,7 +24,6 @@ import (
 // @contact.name Willian Silva
 // @license.name MIT
 // @license.url https://mit-license.org/
-// @host localhost:3000
 // @BasePath /
 func main() {
 	config.ConfigRuntime()
@@ -56,6 +55,7 @@ func main() {
 		r.Post("/", productService.Create)
 	})
 
+	docs.SwaggerInfo.Host = config.EnvConfigs.Host
 	app.Get("/swagger/*", httpSwagger.WrapHandler)
 
 	port := config.EnvConfigs.ServerPort

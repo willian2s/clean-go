@@ -18,8 +18,7 @@ func InitEnvConfigs() {
 type envConfigs struct {
 	ServerPort  string `mapstructure:"SERVER_PORT"`
 	DatabaseUrl string `mapstructure:"DATABASE_URL"`
-	Mode        string `mapstructure:"MODE"`
-	RateLimit   int    `mapstructure:"RATE_LIMIT"`
+	Host        string `mapstructure:"HOST"`
 }
 
 // Call to load the variables from env
