@@ -28,12 +28,4 @@ jobs:
         run: swag init -d adapter/http --parseDependency --parseInternal --parseDepth 2 -o adapter/http/docs
 
       - name: Test
-        run: go mod tidy && go test ./... -coverprofile=coverage.txt -covermode=atomic
-
-      - name: Upload coverage report
-        uses: codecov/codecov-action@v1.0.2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage.txt
-          flags: unittests
-          name: codecov-umbrella
+        run: go mod tidy && go test ./...
