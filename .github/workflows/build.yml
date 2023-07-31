@@ -1,6 +1,9 @@
-name: Run test suite
+name: Run deploy
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - dev
 
 jobs:
   test:
