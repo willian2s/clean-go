@@ -1,0 +1,5 @@
+{
+  "thunder-client.saveToWorkspace": true,
+  "thunder-client.workspaceRelativePath": ".thunder",
+  "thunder-client.httpLibrary": "axios"
+}
